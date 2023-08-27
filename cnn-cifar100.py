@@ -1,3 +1,4 @@
+import os
 from keras.datasets import cifar100
 import matplotlib.pyplot as plt
 import numpy as np
@@ -53,11 +54,18 @@ def training_plot(history):
   plt.plot(epochs, val_acc, 'b', label='Validation acc')
   plt.title('Training and validation accuracy')
   plt.legend()
+
+  acc_plot_filename = "accuracy_plot.png"
+  plt.savefig(acc_plot_filename)
+
   plt.figure()
   plt.plot(epochs, loss, 'bo', label='Training loss')
   plt.plot(epochs, val_loss, 'b', label='Validation loss')
   plt.title('Training and validation loss')
   plt.legend()
+
+  loss_plot_filename = "loss_plot.png"
+  plt.savefig(loss_plot_filename)
   plt.show()
 
 
