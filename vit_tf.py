@@ -171,7 +171,7 @@ def run_experiment(model):
 
 
 vit_classifier = create_vit_classifier()
-history = run_experiment(vit_classifier)
+history, attention_weights  = run_experiment(vit_classifier)
 
 plt.plot(history.history['accuracy'], label='Training Accuracy')
 plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
