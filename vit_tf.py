@@ -1,9 +1,12 @@
+import tensorflow_addons as tfa
+
 import numpy as np
 import tensorflow as tf
 import keras
 from keras import layers
 import tensorflow_addons as tfa
-
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 num_classes = 100
 input_shape = (32, 32, 3)
@@ -17,7 +20,7 @@ print(f"x_test shape: {x_test.shape} - y_test shape: {y_test.shape}")
 learning_rate = 0.001
 weight_decay = 0.0001
 batch_size = 256
-num_epochs = 100
+num_epochs = 350
 image_size = 72
 patch_size = 6
 num_patches = (image_size // patch_size) ** 2
@@ -161,11 +164,30 @@ def run_experiment(model):
 
     model.load_weights(checkpoint_filepath)
     _, accuracy, top_5_accuracy = model.evaluate(x_test, y_test)
+    attention_weights = model.layers[-6].output
     print(f"Test accuracy: {round(accuracy * 100, 2)}%")
     print(f"Test top 5 accuracy: {round(top_5_accuracy * 100, 2)}%")
 
-    return history
+    return history, attention_weights
 
 
 vit_classifier = create_vit_classifier()
 history = run_experiment(vit_classifier)
+
+plt.plot(history.history['accuracy'], label='Training Accuracy')
+plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.title('Training and Validation Accuracy')
+plt.legend()
+plt.savefig('accuracy_plot.png')
+plt.show()
+
+plt.plot(history.history['loss'], label='Training Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.title('Training and Validation Loss')
+plt.legend()
+plt.savefig('loss_plot.png')
+plt.show()
