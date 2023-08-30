@@ -57,6 +57,7 @@ def training_plot(history):
 
   acc_plot_filename = "accuracy_plot.png"
   plt.savefig(acc_plot_filename)
+  plt.close()
 
   plt.figure()
   plt.plot(epochs, loss, 'bo', label='Training loss')
@@ -66,7 +67,7 @@ def training_plot(history):
 
   loss_plot_filename = "loss_plot.png"
   plt.savefig(loss_plot_filename)
-  plt.show()
+  plt.close()
 
 
 model = Sequential()
