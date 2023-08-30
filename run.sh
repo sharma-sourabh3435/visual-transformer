@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --time=20:00:00          # max walltime, hh:mm:ss
+#SBATCH --time=02:00:00          # max walltime, hh:mm:ss
 #SBATCH --nodes 1                   # Number of nodes to request
 #SBATCH --gpus-per-node=a100:1     # Number of GPUs per node to request
 #SBATCH --tasks-per-node=1          # Number of processes to spawn per node
@@ -15,7 +15,7 @@
 
 
 GPUS_PER_NODE=1
-
+module load python/3.10.2
 
 
 # Any remaining arguments will be passed through to the main script later
