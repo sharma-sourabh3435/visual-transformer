@@ -1,4 +1,3 @@
-import tensorflow_addons as tfa
 
 import numpy as np
 import tensorflow as tf
