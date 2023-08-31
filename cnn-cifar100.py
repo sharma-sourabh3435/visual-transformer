@@ -55,7 +55,7 @@ def training_plot(history):
   plt.title('Training and validation accuracy')
   plt.legend()
 
-  acc_plot_filename = "accuracy_plot.png"
+  acc_plot_filename = "accuracy_plot_cnn.png"
   plt.savefig(acc_plot_filename)
   plt.close()
 
@@ -65,7 +65,7 @@ def training_plot(history):
   plt.title('Training and validation loss')
   plt.legend()
 
-  loss_plot_filename = "loss_plot.png"
+  loss_plot_filename = "loss_plot_cnn.png"
   plt.savefig(loss_plot_filename)
   plt.close()
 
@@ -141,3 +141,4 @@ history = model.fit(train_datagen.flow(X_train, y_train, batch_size=64),
 training_stop = time.time()
 training_time = training_stop - training_start
 print(f"Training time: {training_time}")
+training_plot(history)
